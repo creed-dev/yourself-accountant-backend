@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../database/entities/user.entity';
@@ -26,8 +26,16 @@ export class AuthService {
     return null;
   }
 
-  signup(email: string, password: string): Promise<User> {
-    return this.usersService.create(email, password);
+  async signup(email: string, password: string): Promise<User> {
+    const existingUser = await this.usersService.findByEmail(email);
+
+    if (existingUser) {
+      throw new BadRequestException([
+        'user with this email is already registered',
+      ]);
+    } else {
+      return this.usersService.create(email, password);
+    }
   }
 
   async login(
