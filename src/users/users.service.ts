@@ -28,6 +28,13 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
+  findByEmailWithPassword(email: string): Promise<User | null> {
+    return this.usersRepository.findOne({
+      where: { email },
+      select: ['password'],
+    });
+  }
+
   findById(id: number): Promise<User | null> {
     return this.usersRepository.findOneBy({ id });
   }

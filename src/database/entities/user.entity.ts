@@ -4,7 +4,6 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
 } from 'typeorm';
-import { Exclude } from 'class-transformer';
 
 @Entity()
 export class User {
@@ -14,7 +13,10 @@ export class User {
   @Column('text')
   email: string;
 
-  @Exclude()
+  @Column({
+    type: 'text',
+    select: false,
+  })
   password: string;
 
   @CreateDateColumn()

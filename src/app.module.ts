@@ -28,7 +28,7 @@ const entitiesPath: string = path.join(
       password: configService.get('DB_PASSWORD'),
       database: configService.get('DB_NAME'),
       entities: [entitiesPath],
-      synchronize: true,
+      synchronize: false,
     }),
     AuthModule,
   ],
