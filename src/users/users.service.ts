@@ -10,11 +10,22 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
+  create(): Promise<User> {
+    return this.usersRepository.save({
+      email: 'test@gmail.com',
+      password: '123456',
+    });
+  }
+
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<User | null> {
+  findByEmail(email: string): Promise<User | null> {
+    return this.usersRepository.findOneBy({ email });
+  }
+
+  findById(id: number): Promise<User | null> {
     return this.usersRepository.findOneBy({ id });
   }
 

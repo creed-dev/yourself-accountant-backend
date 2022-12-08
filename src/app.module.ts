@@ -3,6 +3,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
+import { AuthModule } from './auth/auth.module';
 import * as path from 'path';
 
 config();
@@ -29,6 +30,7 @@ const entitiesPath: string = path.join(
       entities: [entitiesPath],
       synchronize: true,
     }),
+    AuthModule,
   ],
 })
 export class AppModule {}
