@@ -13,7 +13,7 @@ export class AuthService {
   ) {}
 
   async validateUser(email: string, password: string): Promise<User | null> {
-    const user = await this.usersService.findByEmailWithPassword(email);
+    const user = await this.usersService.getPasswordByEmail(email);
 
     if (user) {
       const comparePassword = await bcrypt.compare(

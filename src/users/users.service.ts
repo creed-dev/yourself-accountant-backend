@@ -28,7 +28,7 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
-  findByEmailWithPassword(email: string): Promise<User | null> {
+  getPasswordByEmail(email: string): Promise<User | null> {
     return this.usersRepository.findOne({
       where: { email },
       select: ['password'],
