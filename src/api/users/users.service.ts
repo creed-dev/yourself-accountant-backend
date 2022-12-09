@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../database/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { User } from '../../database/entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -28,10 +28,10 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
-  getPasswordByEmail(email: string): Promise<User | null> {
+  getByEmailWithPassword(email: string): Promise<User | null> {
     return this.usersRepository.findOne({
       where: { email },
-      select: ['password'],
+      select: ['id', 'email', 'password'],
     });
   }
 

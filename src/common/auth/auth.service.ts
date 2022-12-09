@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../database/entities/user.entity';
 import { RequestWithUserInterface } from './interfaces/request-with-user.interface';
 import * as bcrypt from 'bcrypt';
+import { User } from '../../database/entities/user.entity';
+import { UsersService } from '../../api/users/users.service';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
   ) {}
 
   async validateUser(email: string, password: string): Promise<User | null> {
-    const user = await this.usersService.getPasswordByEmail(email);
+    const user = await this.usersService.getByEmailWithPassword(email);
 
     if (user) {
       const comparePassword = await bcrypt.compare(

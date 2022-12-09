@@ -8,10 +8,10 @@ import {
 } from '@nestjs/common';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthService } from './auth.service';
-import { User } from '../database/entities/user.entity';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { RequestWithUserInterface } from './interfaces/request-with-user.interface';
-import { CreateUserDto } from '../users/dto/create-user.dto';
+import { User } from '../../database/entities/user.entity';
+import { CreateUserDto } from '../../api/users/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
