@@ -28,7 +28,7 @@ export class AuthController {
   @Post('login')
   login(
     @Request() req: RequestWithUserInterface,
-  ): Promise<{ access_token: string }> {
+  ): Promise<{ accessToken: string }> {
     return this.authService.login(req);
   }
 

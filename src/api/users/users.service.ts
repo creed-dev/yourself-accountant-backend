@@ -15,13 +15,9 @@ export class UsersService {
     const hashPassword = bcrypt.hashSync(password, 10);
 
     return this.usersRepository.save({
-      email,
+      email: email.toLowerCase(),
       password: hashPassword,
     });
-  }
-
-  findAll(): Promise<User[]> {
-    return this.usersRepository.find();
   }
 
   findByEmail(email: string): Promise<User | null> {
@@ -30,16 +26,12 @@ export class UsersService {
 
   getByEmailWithPassword(email: string): Promise<User | null> {
     return this.usersRepository.findOne({
-      where: { email },
+      where: { email: email.toLowerCase() },
       select: ['id', 'email', 'password'],
     });
   }
 
   findById(id: number): Promise<User | null> {
     return this.usersRepository.findOneBy({ id });
-  }
-
-  async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
   }
 }

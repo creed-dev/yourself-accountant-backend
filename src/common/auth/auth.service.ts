@@ -30,11 +30,13 @@ export class AuthService {
   }
 
   async signup(email: string, password: string): Promise<User> {
-    const existingUser = await this.usersService.findByEmail(email);
+    const existingUser = await this.usersService.findByEmail(
+      email.toLowerCase(),
+    );
 
     if (existingUser) {
       throw new BadRequestException([
-        'user with this email is already registered',
+        'User with this email is already registered',
       ]);
     } else {
       return this.usersService.create(email, password);
@@ -43,10 +45,11 @@ export class AuthService {
 
   async login(
     request: RequestWithUserInterface,
-  ): Promise<{ access_token: string }> {
+  ): Promise<{ accessToken: string }> {
     const payload = { email: request.user.email, sub: request.user.id };
+
     return {
-      access_token: this.jwtService.sign(payload),
+      accessToken: this.jwtService.sign(payload),
     };
   }
 
