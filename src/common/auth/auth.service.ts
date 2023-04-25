@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RequestWithUserInterface } from './interfaces/request-with-user.interface';
+import { RequestWithUser } from './interfaces/request-with-user.interface';
 import * as bcrypt from 'bcrypt';
 import { User } from '../../database/entities/user.entity';
 import { UsersService } from '../../api/users/users.service';
@@ -43,9 +43,7 @@ export class AuthService {
     }
   }
 
-  async login(
-    request: RequestWithUserInterface,
-  ): Promise<{ accessToken: string }> {
+  async login(request: RequestWithUser): Promise<{ accessToken: string }> {
     const payload = { email: request.user.email, sub: request.user.id };
 
     return {

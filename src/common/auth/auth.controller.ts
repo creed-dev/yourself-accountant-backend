@@ -9,7 +9,7 @@ import {
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { RequestWithUserInterface } from './interfaces/request-with-user.interface';
+import { RequestWithUser } from './interfaces/request-with-user.interface';
 import { User } from '../../database/entities/user.entity';
 import { CreateUserDto } from '../../api/users/dto/create-user.dto';
 
@@ -26,15 +26,13 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  login(
-    @Request() req: RequestWithUserInterface,
-  ): Promise<{ accessToken: string }> {
+  login(@Request() req: RequestWithUser): Promise<{ accessToken: string }> {
     return this.authService.login(req);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('me')
-  me(@Request() req: RequestWithUserInterface): Promise<User | null> {
+  me(@Request() req: RequestWithUser): Promise<User | null> {
     return this.authService.me(req.user.id);
   }
 }
