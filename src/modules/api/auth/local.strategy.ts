@@ -15,7 +15,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
 
     if (!user) {
       throw new BadRequestException({
-        message: ['Login or password is incorrect'],
+        message: 'Логин или пароль введены неверно',
       });
     }
     return user;
