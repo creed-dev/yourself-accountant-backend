@@ -37,7 +37,7 @@ export class DebtsService {
 
       return obj;
     } else {
-      throw new BadRequestException(['Неверный ID']);
+      throw new BadRequestException({ message: 'Неверный ID' });
     }
   }
 
@@ -56,7 +56,7 @@ export class DebtsService {
 
       return obj;
     } else {
-      throw new BadRequestException(['Неверный ID']);
+      throw new BadRequestException({ message: 'Неверный ID' });
     }
   }
 }

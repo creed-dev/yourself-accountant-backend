@@ -35,9 +35,9 @@ export class AuthService {
     );
 
     if (existingUser) {
-      throw new BadRequestException([
-        'User with this email is already registered',
-      ]);
+      throw new BadRequestException({
+        message: 'Пользователь с таким email уже зарегистрирован',
+      });
     } else {
       return this.usersService.create(email, password);
     }
