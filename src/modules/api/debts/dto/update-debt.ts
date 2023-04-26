@@ -1,6 +1,6 @@
 import { IsDateString, IsNumber } from 'class-validator';
 
-export class UpdateDebtDto {
+export class UpdateDebt {
   @IsNumber(
     {},
     {

@@ -12,6 +12,7 @@ const entitiesPath: string = path.join(
   __dirname,
   '..',
   '..',
+  '..',
   'database',
   'entities',
   '*.entity.{js,ts}',

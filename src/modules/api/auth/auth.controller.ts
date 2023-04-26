@@ -6,19 +6,19 @@ import {
   Get,
   Body,
 } from '@nestjs/common';
-import { LocalAuthGuard } from './guards/local-auth.guard';
+import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { RequestWithUser } from './interfaces/request-with-user.interface';
-import { User } from '../../database/entities/user.entity';
-import { CreateUserDto } from '../../api/users/dto/create-user.dto';
+import { JwtAuthGuard } from '../../common/jwt/jwt-auth.guard';
+import { RequestWithUser } from '../../../interfaces/request-with-user';
+import { User } from '../../../database/entities/user.entity';
+import { CreateUser } from '../users/dto/create-user';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('signup')
-  signup(@Body() body: CreateUserDto): Promise<User> {
+  signup(@Body() body: CreateUser): Promise<User> {
     const { email, password } = body;
 
     return this.authService.signup(email, password);
