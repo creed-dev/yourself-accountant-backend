@@ -8,12 +8,12 @@ import {
   Param,
   Patch,
 } from '@nestjs/common';
-import { JwtAuthGuard } from '../../common/auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../../common/jwt/jwt-auth.guard';
 import { DebtsService } from './debts.service';
-import { RequestWithUser } from '../../common/auth/interfaces/request-with-user.interface';
-import { Debt } from '../../database/entities/debt.entity';
-import { CreateDebtDto } from './dto/create-debt.dto';
-import { UpdateDebtDto } from './dto/update-debt.dto';
+import { RequestWithUser } from '../../../interfaces/request-with-user';
+import { Debt } from '../../../database/entities/debt.entity';
+import { CreateDebt } from './dto/create-debt';
+import { UpdateDebt } from './dto/update-debt';
 
 @UseGuards(JwtAuthGuard)
 @Controller('debts')
@@ -23,7 +23,7 @@ export class DebtsController {
   @Post('create')
   create(
     @Request() req: RequestWithUser,
-    @Body() body: CreateDebtDto,
+    @Body() body: CreateDebt,
   ): Promise<Debt> {
     return this.debtsService.create(req.user, body);
   }
@@ -32,7 +32,7 @@ export class DebtsController {
   update(
     @Request() req: RequestWithUser,
     @Param('id') id: number,
-    @Body() body: UpdateDebtDto,
+    @Body() body: UpdateDebt,
   ): Promise<Debt | null> {
     return this.debtsService.update(req.user, id, body);
   }

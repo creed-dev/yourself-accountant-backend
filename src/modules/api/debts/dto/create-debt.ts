@@ -1,6 +1,6 @@
 import { IsDateString, IsNumber, IsString } from 'class-validator';
 
-export class CreateDebtDto {
+export class CreateDebt {
   @IsString({
     message: 'Имя обязательно',
   })

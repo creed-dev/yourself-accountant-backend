@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Debt } from '../../database/entities/debt.entity';
-import { CreateDebtDto } from './dto/create-debt.dto';
-import { User } from '../../database/entities/user.entity';
-import { UpdateDebtDto } from './dto/update-debt.dto';
+import { Debt } from '../../../database/entities/debt.entity';
+import { CreateDebt } from './dto/create-debt';
+import { User } from '../../../database/entities/user.entity';
+import { UpdateDebt } from './dto/update-debt';
 
 @Injectable()
 export class DebtsService {
@@ -13,18 +13,14 @@ export class DebtsService {
     private debtsRepository: Repository<Debt>,
   ) {}
 
-  create(user: User, createDebtDTO: CreateDebtDto): Promise<Debt> {
+  create(user: User, createDebtDTO: CreateDebt): Promise<Debt> {
     return this.debtsRepository.save({
       user,
       ...createDebtDTO,
     });
   }
 
-  async update(
-    user: User,
-    id: number,
-    body: UpdateDebtDto,
-  ): Promise<Debt | null> {
+  async update(user: User, id: number, body: UpdateDebt): Promise<Debt | null> {
     const obj = await this.debtsRepository.findOne({
       where: {
         id,
