@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Debt } from '../../../database/entities/debt.entity';
+import { Debt } from '../../../database/entities/debt';
 import { CreateDebt } from './dto/create-debt';
-import { User } from '../../../database/entities/user.entity';
+import { User } from '../../../database/entities/user';
 import { UpdateDebt } from './dto/update-debt';
 
 @Injectable()

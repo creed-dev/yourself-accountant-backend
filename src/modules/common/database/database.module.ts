@@ -15,7 +15,7 @@ const entitiesPath: string = path.join(
   '..',
   'database',
   'entities',
-  '*.entity.{js,ts}',
+  '*.{js,ts}',
 );
 
 const typeOrmConfig: DynamicModule = TypeOrmModule.forRoot({

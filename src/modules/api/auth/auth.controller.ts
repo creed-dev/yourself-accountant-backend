@@ -10,7 +10,7 @@ import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from '../../common/jwt/jwt-auth.guard';
 import { RequestWithUser } from '../../../interfaces/request-with-user';
-import { User } from '../../../database/entities/user.entity';
+import { User } from '../../../database/entities/user';
 import { CreateUser } from '../users/dto/create-user';
 
 @Controller('auth')
