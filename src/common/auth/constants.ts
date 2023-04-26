@@ -6,5 +6,5 @@ config();
 const configService = new ConfigService();
 
 export const jwtConstants = {
-  secret: configService.get('JWS_SECRET_KEY'),
+  secret: configService.get('JWT_SECRET_KEY'),
 };
