@@ -14,7 +14,7 @@ const entitiesPath: string = path.join(
   'dist',
   'database',
   'entities',
-  '*.entity{ .ts,.js}',
+  '*{ .ts,.js}',
 );
 
 const migrationsPath: string = path.join(

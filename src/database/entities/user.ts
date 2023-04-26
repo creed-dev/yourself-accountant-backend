@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   OneToMany,
 } from 'typeorm';
-import { Debt } from './debt.entity';
+import { Debt } from './debt';
 
 @Entity()
 export class User {

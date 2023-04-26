@@ -11,7 +11,7 @@ import {
 import { JwtAuthGuard } from '../../common/jwt/jwt-auth.guard';
 import { DebtsService } from './debts.service';
 import { RequestWithUser } from '../../../interfaces/request-with-user';
-import { Debt } from '../../../database/entities/debt.entity';
+import { Debt } from '../../../database/entities/debt';
 import { CreateDebt } from './dto/create-debt';
 import { UpdateDebt } from './dto/update-debt';
 
