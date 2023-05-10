@@ -28,7 +28,7 @@ export class DebtsController {
     return this.debtsService.create(req.user, body);
   }
 
-  @Patch('update/:id')
+  @Patch(':id/update')
   update(
     @Request() req: RequestWithUser,
     @Param('id') id: number,
@@ -37,7 +37,7 @@ export class DebtsController {
     return this.debtsService.update(req.user, id, body);
   }
 
-  @Delete('delete/:id')
+  @Delete(':id/delete')
   delete(
     @Request() req: RequestWithUser,
     @Param('id') id: number,
